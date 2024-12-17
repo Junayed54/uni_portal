@@ -7,28 +7,29 @@
         background: #344C64;
         color: white;
     }
-    
+
     .quiz-container {
         text-align: center;
         max-width: 800px;
         width: 90%;
         margin: 0 auto;
+        padding: 10px;
     }
-    
+
     .quiz-card {
-        color:white;
+        color: white;
         background: #577B8D;
         border-radius: 20px;
         padding: 20px;
         box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
     }
-    
+
     .timer-box {
         font-size: 1.2rem;
         color: #ff6868;
         margin-bottom: 15px;
     }
-    
+
     .question-box {
         position: relative;
         background: #57A6A1;
@@ -39,14 +40,14 @@
         margin-bottom: 20px;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
     }
-    
+
     .options-container {
         margin-bottom: 8px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
     }
-    
+
     .options-container .option {
         border: 2px solid transparent;
         border-radius: 25px;
@@ -58,23 +59,30 @@
         cursor: pointer;
         transition: all 0.3s ease-in-out;
     }
-    
+
     .options-container .option:hover {
         transform: scale(1.05);
         box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.2);
     }
-    
+
+    .navigation-buttons {
+        display: flex;
+        flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+        justify-content: center; /* Center buttons horizontally */
+        gap: 10px; /* Space between buttons */
+        margin-top: 20px;
+    }
+
     .navigation-buttons button {
-        margin: 0 10px;
-    }
-    
-    .result-text {
-        font-size: 1.3rem;
-        color: #89f589;
+        flex: 0 1 auto; /* Prevent buttons from taking full width */
+        max-width: 150px; /* Optional: Limit the maximum button width */
+        min-width: 100px; /* Optional: Set a minimum button width */
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
     }
 
-
-    /* Previous Button */
+    /* Button Styles */
     .btn-prev {
         background-color: #6c757d; /* Neutral gray */
         color: #fff;
@@ -83,12 +91,7 @@
     .btn-prev:hover {
         background-color: #5a6268; /* Darker gray for hover */
     }
-    .btn-prev:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5); /* Gray focus ring */
-    }
 
-    /* Skip Button */
     .btn-skip {
         background-color: #ffc107; /* Warning yellow */
         color: #212529;
@@ -97,12 +100,7 @@
     .btn-skip:hover {
         background-color: #e0a800; /* Darker yellow */
     }
-    .btn-skip:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5); /* Yellow focus ring */
-    }
 
-    /* Next Button */
     .btn-next {
         background-color: #007bff; /* Primary blue */
         color: #fff;
@@ -111,12 +109,7 @@
     .btn-next:hover {
         background-color: #0056b3; /* Darker blue */
     }
-    .btn-next:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Blue focus ring */
-    }
 
-    /* Submit Button */
     .btn-submit {
         background-color: #28a745; /* Success green */
         color: #fff;
@@ -125,9 +118,25 @@
     .btn-submit:hover {
         background-color: #218838; /* Darker green */
     }
-    .btn-submit:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5); /* Green focus ring */
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        .quiz-card {
+            padding: 15px;
+        }
+
+        .options-container {
+            grid-template-columns: 1fr; /* Stack options vertically on small screens */
+        }
+
+        .navigation-buttons button {
+            flex: 1 1 100%; /* Make buttons take full width */
+            max-width: 100%; /* Remove maximum width */
+        }
+
+        .btn-submit {
+            margin-top: 15px;
+        }
     }
 
     /* Modal Customization */
@@ -174,15 +183,13 @@
         border-radius: 30px;
     }
 
-    /* Hover Effects */
     .modal-footer .btn:hover {
         background-color: #444; /* Slightly darker hover effect */
         color: #fff;
         transition: all 0.3s ease-in-out;
     }
-
-    
 </style>
+
 </head>
 
 <body>

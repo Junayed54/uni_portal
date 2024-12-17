@@ -656,13 +656,19 @@ class QuestionViewSet(viewsets.ModelViewSet):
             with transaction.atomic():
                 # Create or get the related objects for subject, unit, and institute
                 subject, _ = Subject.objects.get_or_create(name=subject_name)
-                
-                # Ensure unit and institute are properly related
-                unit = Unit.objects.filter(name=unit_name, institute__name=institute_name).first()
-                if not unit:
-                    return Response({"error": f"Unit '{unit_name}' does not exist in the specified institute '{institute_name}'."}, status=status.HTTP_400_BAD_REQUEST)
-                
                 institute, _ = Institute.objects.get_or_create(name=institute_name)
+                # Ensure unit and institute are properly related
+                unit, _ = Unit.objects.get_or_create(
+                    name=unit_name,
+                    institute=institute,
+                    defaults={
+                        # Add any default values for Unit here if needed
+                    }
+                )
+                # if not unit:
+                #     return Response({"error": f"Unit '{unit_name}' does not exist in the specified institute '{institute_name}'."}, status=status.HTTP_400_BAD_REQUEST)
+                
+                
 
                 for _, row in df.iterrows():
                     # Extract and validate data from each row
